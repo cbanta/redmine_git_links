@@ -1,0 +1,13 @@
+<% changesets.each do |changeset| %>
+	<%
+		s = Setting["plugin_redmine_git_links"]
+		url = s['git_link_url_on'] ? 
+			s["git_link_url"] : 
+			{:controller => 'repositories', :action => 'revision', :id => changeset.project, :rev => changeset.revision}
+	%>
+    <div class="changeset <%= cycle('odd', 'even') %>">
+    <p><%= link_to("#{l(:label_revision)} #{changeset.revision}", url ) %><br />
+        <span class="author"><%= authoring(changeset.committed_on, changeset.author) %></span></p>
+    <%= textilizable(changeset, :comments) %>
+    </div>
+<% end %>

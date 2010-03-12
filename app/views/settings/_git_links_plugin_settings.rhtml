@@ -1,6 +1,6 @@
 <p><label>Git Link Url On</label><%= check_box_tag 'settings[git_link_url_on]', 1, @settings['git_link_url_on'] %></p>
 <p>
-	<label>Git Link Url</label><%= text_field_tag 'settings[git_link_url]', @settings['git_link_url'] %><br />
-	Use %revid% for the git rev id
+	<label>Git Link Url</label><%= text_area_tag 'settings[git_link_url]', @settings['git_link_url'] %><br />
+	Use %rev% for the git rev id<br />
+	Use %project% for the project name
 </p>
-

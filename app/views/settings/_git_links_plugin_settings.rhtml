@@ -1,7 +1,8 @@
 <p><label>Git Link Url On</label><%= check_box_tag 'settings[git_link_url_on]', 1, @settings['git_link_url_on'] %></p>
 <p>
-	<label>Git Link Url</label><%= text_area_tag 'settings[git_link_url]', @settings['git_link_url'] %><br />
+	<label>Git Link Url</label><%= text_area_tag 'settings[git_link_url]', @settings['git_link_url'], :cols=>20 %><br />
 	Use %rev% for the git rev id<br />
 	Use %project_name% for the project name<br />
-	Use %project_id% for the project identifier
+	Use %project_id% for the project identifier<br />
+	Use %repo_url% for the last part of the repository url (matches first group of this regex <%= h("/([^\/.]+)([\/]?\.git)?\z/i") %>)
 </p>

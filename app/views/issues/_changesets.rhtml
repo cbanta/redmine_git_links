@@ -1,11 +1,14 @@
 <% changesets.each do |changeset| %>
 	<%
 		s = Setting["plugin_redmine_git_links"]
+		repo_url = changeset.repository.url.scan(/([^\/.]+)([\/]?\.git)?\z/i).first
+		repo_url = repo_url && repo_url.first 
 		url = s['git_link_url_on'] ? 
 			s["git_link_url"].
 				gsub('%project_name%',changeset.project.name).
 				gsub('%project_id%',changeset.project.identifier).
-				gsub('%rev%',changeset.revision) : 
+				gsub('%rev%',changeset.revision).
+				gsub('%repo_url%',repo_url) : 
 			{:controller => 'repositories', :action => 'revision', :id => changeset.project, :rev => changeset.revision}
 	%>
     <div class="changeset <%= cycle('odd', 'even') %>">

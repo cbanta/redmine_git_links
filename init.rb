@@ -7,6 +7,9 @@ Redmine::Plugin.register :redmine_git_links do
   version '0.0.1'
   settings :default =>{
       'git_link_url' => '/cgit/%project_id%/commit/?id=%rev%',
-      'git_link_url_on' => true,
+      'git_link_url_on' => false,
+      'git_link_redirect_on' => false,
     }, :partial => 'settings/git_links_plugin_settings'
 end
+
+RepositoriesController.send(:include, RepositoriesControllerRevisionRedirectPatch)
